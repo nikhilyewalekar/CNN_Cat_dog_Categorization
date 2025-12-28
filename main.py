@@ -4,6 +4,10 @@ from src.utils import CNNCatDogClassification
 
 app = Flask(__name__)
 
+UPLOAD_FOLDER = "upload"
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 @app.route("/", methods=["GET"])
 def index():
     return render_template("index.html")
@@ -11,7 +15,7 @@ def index():
 @app.route("/uploadImage", methods=["POST"])
 def uploadImage():
     file = request.files['image_file']
-    file_name = os.path.join('upload', file.filename)
+    file_name = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(file_name)
     obj = CNNCatDogClassification()
     result = obj.predict_cateory(file_name)
