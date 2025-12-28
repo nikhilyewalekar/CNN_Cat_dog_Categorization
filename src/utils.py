@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import os
-from keras.preprocessing import image
-from keras.models import load_model
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model
 
 model = None
 
