@@ -3,7 +3,6 @@ import os
 from src.utils import CNNCatDogClassification
 
 app = Flask(__name__)
-obj = CNNCatDogClassification()
 
 @app.route("/", methods=["GET"])
 def index():
@@ -14,7 +13,7 @@ def uploadImage():
     file = request.files['image_file']
     file_name = os.path.join('upload', file.filename)
     file.save(file_name)
-  
+    obj = CNNCatDogClassification()
     result = obj.predict_cateory(file_name)
     print(result)
     if os.path.exists(file_name):
